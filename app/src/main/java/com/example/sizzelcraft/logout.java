@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,13 +23,14 @@ import java.util.Objects;
 public class logout extends AppCompatActivity {
 
     Button signoutbt, aloginbtn;
+    ImageView barrow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_logout);
-
+         barrow=findViewById(R.id.backimg);
         signoutbt = findViewById(R.id.logoutbtn2);
         aloginbtn = findViewById(R.id.anotherbtn1);
         aloginbtn.setOnClickListener(v -> {
@@ -42,7 +44,11 @@ public class logout extends AppCompatActivity {
             Intent mainIntent = new Intent(logout.this, signup.class);
             startActivity(mainIntent);
         });
-
+        barrow.setOnClickListener(v -> {
+            Intent sint = new Intent(logout.this, signin.class);
+            startActivity(sint);
+            finish();
+        });
     }
     @Override
 

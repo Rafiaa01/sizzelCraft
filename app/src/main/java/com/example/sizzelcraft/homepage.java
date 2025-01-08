@@ -60,7 +60,7 @@ public class homepage extends AppCompatActivity {
         } else if (itemId == R.id.share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Sizzel Craft: [App Link]");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Sizzel Craft: [AndroidStudioProjects\\sizzelCraft2]");
             startActivity(Intent.createChooser(shareIntent, "Share via"));
         } else {
             return super.onOptionsItemSelected(item);

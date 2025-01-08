@@ -48,6 +48,13 @@ public class signin extends AppCompatActivity {
             Intent mainIntent = new Intent(signin.this, signup.class);
             startActivity(mainIntent);
         });
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Press to exit", Toast.LENGTH_SHORT).show();
+        moveTaskToBack(true);
     }
 
     // Validate the username (email)

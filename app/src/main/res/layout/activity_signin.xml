@@ -40,7 +40,7 @@
             android:layout_marginEnd="7dp"
             android:layout_toStartOf="@+id/icon"
             android:layout_marginTop="6dp"
-            android:hint="Username"
+            android:hint="Email"
             android:inputType="textEmailAddress"
             android:padding="12dp"
             android:textColor="@android:color/white"
