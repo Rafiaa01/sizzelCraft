@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "47332965283",
+    "project_id": "sizzel1",
+    "storage_bucket": "sizzel1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:47332965283:android:6920f5c3eb478e96c37816",
+        "android_client_info": {
+          "package_name": "com.example.sizzelcraft"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCirSn1nd_6RAeMsAcjXlLqN3RUSfBYa-M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

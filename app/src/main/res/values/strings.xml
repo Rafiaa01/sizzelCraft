@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">sizzelCraft</string>
+    <string name="login">Login</string>
+    <string name="food_image_description">Food Image</string>
+    <string name="log_in">Log In</string>
+    <string name="name_hint">Name</string>
+    <string name="password_hint">Password</string>
+    <string name="or">or</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="logout">Log out</string>
+    <string name="aboutus">Welcome to Sizzel Craft, your ultimate destination for satisfying fast-food cravings! Our app is designed to bring the best of fast food right to your fingertips.
+        Whether you are in the mood for juicy burgers, crispy fries, cheesy pizzas, or sizzling wraps, Sizzel Craft has got you covered with a diverse menu from your favorite local and international eateries.
+        </string>
+    <string name="about">At Sizzel Craft, we believe food is more than just a meal – it’s an experience.
+        That’s why we’ve partnered with top-notch vendors to ensure every bite is a burst of flavor and quality.
+        Our easy-to-use app makes browsing, ordering, and enjoying your favorite dishes simple and convenient.</string>
+    <string name="log_inanother">Log In with another account</string>
+    <string name="user_icon_description">User Icon</string>
+    <string name="lock_icon_description">Lock Icon</string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="login_with_google">Log in with Google</string>
+    <string name="or_text">or</string>
+    <string name="login_with_facebook">Log in with Facebook</string>
+    <string name="footer_text">Delight in Every Bite – Your Food, Your Way!</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
