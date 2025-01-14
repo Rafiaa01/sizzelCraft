@@ -7,6 +7,8 @@
     android:layout_height="match_parent"
     tools:context=".homepage"
     android:background="@drawable/gradient">
+
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         android:layout_width="match_parent"
@@ -16,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Fragment content area -->
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="wrap_content"
@@ -23,16 +26,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </FrameLayout>
-
+    <!-- Buttons -->
     <Button
         android:id="@+id/btnhome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="44dp"
         android:drawableStart="@drawable/homee"
         android:background="?attr/selectableItemBackground"
@@ -46,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="44dp"
         android:drawableStart="@drawable/parentalcontrol"
         android:background="?attr/selectableItemBackground"
@@ -55,19 +57,6 @@
         app:layout_constraintStart_toEndOf="@+id/btnhome"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btcheckout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="44dp"
-        android:drawableStart="@drawable/checklist"
-        android:background="?attr/selectableItemBackground"
-        android:text="Checkout"
-        android:textColor="@color/yellow"
-        app:layout_constraintStart_toEndOf="@+id/btdeals"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btncart"
@@ -75,12 +64,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableStart="@drawable/grocerystore"
-        android:layout_marginStart="1dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="44dp"
         android:background="?attr/selectableItemBackground"
         android:text="cart"
         android:textColor="@color/yellow"
-        app:layout_constraintStart_toEndOf="@+id/btcheckout"
+        app:layout_constraintStart_toEndOf="@id/btdeals"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
