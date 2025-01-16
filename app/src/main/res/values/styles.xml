@@ -4,4 +4,12 @@
         <item name="android:background">@color/black_overlay</item>
         <item name="android:buttonBarStyle">?android:attr/buttonBarStyle</item>
     </style>
+
+    <style name="FixedWhiteCard">
+        <item name="cardBackgroundColor">@color/fixed_white</item>
+        <item name="cardCornerRadius">25dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+
 </resources>

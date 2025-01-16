@@ -8,37 +8,43 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class homepage extends AppCompatActivity {
 
-    Button firstfragment, secondfragment, thirdfragment, fourthfragment;
+    Button firstfragment, secondfragment, fourthfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
+        // Initialize buttons and card views
         firstfragment = findViewById(R.id.btnhome);
         secondfragment = findViewById(R.id.btdeals);
-        thirdfragment = findViewById(R.id.btcheckout);
         fourthfragment = findViewById(R.id.btncart);
 
+        // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar1);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.yellow)); // Set title text color
+        toolbar.setTitle("Sizzel Craft"); // Set the toolbar title
         setSupportActionBar(toolbar);
+
+        // Default fragment
+        replaceFragment(new HomeFragment());
 
         // Set button click listeners
         firstfragment.setOnClickListener(v -> replaceFragment(new HomeFragment()));
-
         secondfragment.setOnClickListener(v -> replaceFragment(new DealsFragment()));
+        fourthfragment.setOnClickListener(v -> replaceFragment(new cartfragment()));
 
-        thirdfragment.setOnClickListener(v -> Toast.makeText(homepage.this, "Checkout clicked", Toast.LENGTH_SHORT).show());
-
-        fourthfragment.setOnClickListener(v -> Toast.makeText(homepage.this, "Cart clicked", Toast.LENGTH_SHORT).show());
+        // Set CardView click listeners
     }
 
     @Override
@@ -51,11 +57,9 @@ public class homepage extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
         if (itemId == R.id.setting) {
-            Intent intent = new Intent(homepage.this, logout.class);
-            startActivity(intent);
+            startActivity(new Intent(homepage.this, logout.class));
         } else if (itemId == R.id.about) {
-            Intent intent = new Intent(homepage.this, Aboutus.class);
-            startActivity(intent);
+            startActivity(new Intent(homepage.this, Aboutus.class));
             Toast.makeText(this, "About Sizzel Craft", Toast.LENGTH_SHORT).show();
         } else if (itemId == R.id.share) {
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
@@ -70,15 +74,23 @@ public class homepage extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
-        Toast.makeText(this, "Press to exit", Toast.LENGTH_SHORT).show();
-        moveTaskToBack(true);
+        new AlertDialog.Builder(this)
+                .setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", (dialog, id) -> {
+                    super.onBackPressed();
+                    moveTaskToBack(true);
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
+        fragmentTransaction.addToBackStack(null); // Optional
         fragmentTransaction.commit();
     }
+
 }
