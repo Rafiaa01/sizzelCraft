@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,12 +6,12 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     tools:context=".HomeFragment">
-
     <!-- Search Bar -->
     <androidx.appcompat.widget.SearchView
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="05dp"
         android:layout_margin="16dp"
         android:background="@drawable/round_white_background"
         android:iconifiedByDefault="false"
@@ -28,6 +27,43 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- New Card -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardNew"
+            android:layout_width="wrap_content"
+            android:layout_height="117dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/fixed_white"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="8dp"> <!-- Background Color -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/foodback"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/newCardText"
+                        android:layout_width="308dp"
+                        android:layout_height="80dp"
+                        android:text="Delight in Every Bite Your Food, Your Way!"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <!-- Card 1 -->
         <androidx.cardview.widget.CardView
             android:id="@+id/card1"
@@ -40,7 +76,7 @@
             android:background="@color/fixed_white"> <!-- Background Color -->
 
             <LinearLayout
-                android:layout_width="360dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -107,8 +143,8 @@
                     android:src="@drawable/deals" />
 
                 <LinearLayout
-                    android:layout_width="218dp"
-                    android:layout_height="69dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
@@ -144,7 +180,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="104dp"
+                android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -184,5 +220,4 @@
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
-
 </FrameLayout>
