@@ -94,7 +94,7 @@
         android:padding="10dp"
         android:text="@string/login"
         android:background="@drawable/custombtn"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 
     <TextView
@@ -116,6 +116,6 @@
         android:padding="10dp"
         android:text="@string/sign_up"
         android:background="@drawable/custombtn"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp" />
 </LinearLayout>
