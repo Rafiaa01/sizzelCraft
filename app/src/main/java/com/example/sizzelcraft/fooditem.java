@@ -2,13 +2,13 @@ package com.example.sizzelcraft;
 
 public class fooditem {
     private int imageResId;
-    private String title;
+    private String name;
     private String description;
     private String price;
 
-    public fooditem(int imageResId, String title, String description, String price) {
+    public fooditem(int imageResId, String name, String description, String price) {
         this.imageResId = imageResId;
-        this.title = title;
+        this.name = name;
         this.description = description;
         this.price = price;
     }
@@ -17,8 +17,8 @@ public class fooditem {
         return imageResId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     public String getDescription() {

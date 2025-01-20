@@ -46,14 +46,14 @@ public class FoodAdapter extends ArrayAdapter<fooditem> {
         // Set data to views
         if (item != null) {
             imageView.setImageResource(item.getImageResId());
-            titleView.setText(item.getTitle());
+            titleView.setText(item.getName());
             descriptionView.setText(item.getDescription());
             priceView.setText(item.getPrice());
         }
 
         // Set listeners for Like and Add to Cart buttons
-        likeButton.setOnClickListener(v -> Toast.makeText(getContext(), "Liked " + item.getTitle(), Toast.LENGTH_SHORT).show());
-        addToCartButton.setOnClickListener(v -> Toast.makeText(getContext(), "Added to Cart: " + item.getTitle(), Toast.LENGTH_SHORT).show());
+        likeButton.setOnClickListener(v -> Toast.makeText(getContext(), "Liked " + item.getName(), Toast.LENGTH_SHORT).show());
+        addToCartButton.setOnClickListener(v -> Toast.makeText(getContext(), "Added to Cart: " + item.getName(), Toast.LENGTH_SHORT).show());
 
         return convertView;
     }
