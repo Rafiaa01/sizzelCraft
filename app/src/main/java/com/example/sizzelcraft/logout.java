@@ -34,7 +34,7 @@ public class logout extends AppCompatActivity {
         signoutbt = findViewById(R.id.logoutbtn2);
         aloginbtn = findViewById(R.id.anotherbtn1);
         aloginbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(logout.this, homepage.class);
+            Intent intent = new Intent(logout.this, signin.class);
             startActivity(intent);
             finish(); // Check user credentials in the database
         });
