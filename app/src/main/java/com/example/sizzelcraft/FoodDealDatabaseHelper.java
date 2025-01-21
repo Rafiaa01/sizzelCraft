@@ -25,6 +25,10 @@ public class FoodDealDatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
+    private void insertSampleData(SQLiteDatabase db) {
+    }
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableQuery = "CREATE TABLE " + TABLE_FOOD_DEALS + " (" +
