@@ -32,7 +32,7 @@ public class Checkout extends AppCompatActivity {
         edtEmail = findViewById(R.id.edtEmail);
         edtAddress = findViewById(R.id.edtAddress);
         btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
-        totalPriceView = findViewById(R.id.total_price);
+        totalPriceView = findViewById(R.id.total_price1);
 
         // Get the cart items from the Intent that started this activity
         if (getIntent().getSerializableExtra("cart_items") != null) {
