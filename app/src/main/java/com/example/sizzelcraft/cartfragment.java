@@ -19,6 +19,7 @@ public class cartfragment extends Fragment {
     private CartAdapter cartAdapter;
     private CartDatabaseHelper dbHelper;
     private TextView totalPriceTextView;
+    private double totalPrice;
 
     @Nullable
     @Override
@@ -49,6 +50,7 @@ public class cartfragment extends Fragment {
         checkoutButton.setOnClickListener(v -> {
             // Open the CheckoutActivity
             Intent intent = new Intent(getContext(), Checkout.class);
+            intent.putExtra("total_price", totalPrice);
             startActivity(intent);
         });
 
@@ -72,7 +74,7 @@ public class cartfragment extends Fragment {
 
     // Method to calculate and display the total price
     private void calculateAndDisplayTotalPrice(ArrayList<fooditem> cartItems) {
-        double totalPrice = 0.0;
+        totalPrice = 0.0;
 
         for (fooditem item : cartItems) {
             // Parse the price to double and add to total

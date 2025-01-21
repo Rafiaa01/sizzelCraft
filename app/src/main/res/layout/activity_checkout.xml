@@ -5,15 +5,41 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your details"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="0dp"/>
     <!-- Name Input -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:textSize="15dp"
+        android:textColor="@color/black" />
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:layout_marginTop="200dp"
         android:hint="Enter Name"
         android:inputType="textPersonName" />
 
+    <TextView
+        android:id="@+id/Phno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/black" />
     <!-- Phone Number Input -->
     <EditText
         android:id="@+id/edtPhoneNumber"
@@ -22,6 +48,14 @@
         android:hint="Enter Phone Number"
         android:inputType="phone" />
 
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-mail"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/black" />
     <!-- Email Input -->
     <EditText
         android:id="@+id/edtEmail"
@@ -30,6 +64,14 @@
         android:hint="Enter Email"
         android:inputType="textEmailAddress" />
 
+    <TextView
+        android:id="@+id/address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:textColor="@color/black" />
     <!-- Address Input -->
     <EditText
         android:id="@+id/edtAddress"
@@ -40,15 +82,17 @@
 
     <TextView
         android:id="@+id/total_price1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total: $0.00"
-        android:textSize="18sp" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="170dp"
+        android:layout_gravity="right"
+        />
     <!-- Confirm Order Button -->
     <Button
         android:id="@+id/btnConfirmOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:text="Confirm Order" />
 </LinearLayout>
