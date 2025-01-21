@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 public class cartfragment extends Fragment {
     private CartAdapter cartAdapter;
     private CartDatabaseHelper dbHelper;
+    private TextView totalPriceTextView;
 
     @Nullable
     @Override
@@ -35,6 +37,12 @@ public class cartfragment extends Fragment {
         // Set Adapter with items fetched from the database
         cartAdapter = new CartAdapter(getContext(), cartItems, true);
         cartListView.setAdapter(cartAdapter);
+
+        // Bind total price TextView
+        totalPriceTextView = view.findViewById(R.id.total_price);
+
+        // Calculate and display the total price
+        calculateAndDisplayTotalPrice(cartItems);
 
         // Checkout button functionality
         Button checkoutButton = view.findViewById(R.id.checkout);
@@ -56,6 +64,22 @@ public class cartfragment extends Fragment {
             cartAdapter.clear();
             cartAdapter.addAll(updatedCartItems);
             cartAdapter.notifyDataSetChanged();
+
+            // Recalculate and display the total price
+            calculateAndDisplayTotalPrice(updatedCartItems);
         }
+    }
+
+    // Method to calculate and display the total price
+    private void calculateAndDisplayTotalPrice(ArrayList<fooditem> cartItems) {
+        double totalPrice = 0.0;
+
+        for (fooditem item : cartItems) {
+            // Parse the price to double and add to total
+            totalPrice += Double.parseDouble(item.getPrice().replace("$", "").trim());
+        }
+
+        // Display total price in the TextView
+        totalPriceTextView.setText("Total: $" + String.format("%.2f", totalPrice));
     }
 }

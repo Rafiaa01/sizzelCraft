@@ -39,7 +39,7 @@
         android:inputType="textPostalAddress" />
 
     <TextView
-        android:id="@+id/total_price"
+        android:id="@+id/total_price1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Total: $0.00"
