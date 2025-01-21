@@ -20,7 +20,7 @@ public class Checkout extends AppCompatActivity {
     EditText edtName, edtPhoneNumber, edtEmail, edtAddress;
     Button btnConfirmOrder;
     TextView totalPriceView;
-    ArrayList<fooditem> cartItems = new ArrayList<>();
+    double totalPrice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +34,11 @@ public class Checkout extends AppCompatActivity {
         btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
         totalPriceView = findViewById(R.id.total_price1);
 
-        // Get the cart items from the Intent that started this activity
-        if (getIntent().getSerializableExtra("cart_items") != null) {
-            cartItems = (ArrayList<fooditem>) getIntent().getSerializableExtra("cart_items");
-        }
+        // Get the total price from the Intent
+        totalPrice = getIntent().getDoubleExtra("total_price", 0.0);
 
-        // Calculate and display the total price
+        // Display the total price
+        totalPriceView.setText("Total Price: $" + String.format("%.2f", totalPrice));
 
         // Set up the "Confirm Order" button click listener
         btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
