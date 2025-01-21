@@ -36,16 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void insertSampleData(SQLiteDatabase db) {
-        insertFoodItem(db, R.drawable.burger, "Burger", "Delicious beef burger", "$5.99");
-        insertFoodItem(db, R.drawable.pizza, "Pizza", "Cheesy pepperoni pizza", "$8.99");
-        insertFoodItem(db, R.drawable.pasta, "Pasta", "Creamy Alfredo pasta", "$7.99");
-        insertFoodItem(db, R.drawable.sushi, "Sushi", "Fresh salmon sushi rolls", "$12.99");
-        insertFoodItem(db,R.drawable.tacos,"Tacos", "Spicy chicken tacos", "$6.49");
-        insertFoodItem(db,R.drawable.sandwich,"Sandwich", "Grilled cheese sandwich", "$4.99");
-        insertFoodItem(db,R.drawable.steak,"Steak", "Juicy grilled steak", "$14.99");
-        insertFoodItem(db,R.drawable.soup,"Soup", "Hot and sour soup", "$3.99");
-        insertFoodItem(db,R.drawable.salad,"Salad", "Fresh garden salad", "$5.49");
-        insertFoodItem(db,R.drawable.icecream,"Ice Cream", "Creamy vanilla ice cream", "$2.99");
+
     }
 
     private void insertFoodItem(SQLiteDatabase db, int imageResId, String name, String description, String price) {

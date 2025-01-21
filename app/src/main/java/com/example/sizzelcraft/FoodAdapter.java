@@ -51,11 +51,13 @@ public class FoodAdapter extends ArrayAdapter<fooditem> {
             priceView.setText(item.getPrice());
         }
 
+        CartDatabaseHelper dbHelper = new CartDatabaseHelper(getContext());
+
         // Set listeners for Like and Add to Cart buttons
         likeButton.setOnClickListener(v -> Toast.makeText(getContext(), "Liked " + item.getName(), Toast.LENGTH_SHORT).show());
         addToCartButton.setOnClickListener(v -> {
             if (item != null) {
-                CartManager.getInstance().addToCart(item);
+                dbHelper.addItemToCart(item); // Save to SQLite database
                 Toast.makeText(getContext(), "Added to cart: " + item.getName(), Toast.LENGTH_SHORT).show();
             }
         });

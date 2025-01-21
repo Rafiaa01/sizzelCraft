@@ -40,7 +40,6 @@ public class Checkout extends AppCompatActivity {
         }
 
         // Calculate and display the total price
-        calculateTotalPrice();
 
         // Set up the "Confirm Order" button click listener
         btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +63,5 @@ public class Checkout extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    private void calculateTotalPrice() {
-        double totalPrice = 0.0;
-        for (fooditem item : cartItems) {
-            totalPrice += Double.parseDouble(item.getPrice());  // Assuming price is stored as String in fooditem class
-        }
-        totalPriceView.setText("Total: $" + totalPrice);
     }
 }

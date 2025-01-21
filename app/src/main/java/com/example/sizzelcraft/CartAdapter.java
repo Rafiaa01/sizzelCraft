@@ -17,10 +17,12 @@ import android.widget.ArrayAdapter;
 public class CartAdapter extends ArrayAdapter<fooditem> {
 
     private boolean isCart;  // Flag to determine if the view is for the cart or the menu
+    private CartDatabaseHelper dbHelper;  // Database helper instance
 
     public CartAdapter(@NonNull Context context, @NonNull ArrayList<fooditem> items, boolean isCart) {
         super(context, 0, items);
         this.isCart = isCart;
+        this.dbHelper = new CartDatabaseHelper(context);  // Initialize the database helper
     }
 
     @NonNull
@@ -53,17 +55,25 @@ public class CartAdapter extends ArrayAdapter<fooditem> {
             // Change the text of the button to "Remove" and set its functionality
             actionButton.setText("Remove");
             actionButton.setOnClickListener(v -> {
-                // Remove the item from the cart
-                CartManager.getInstance().getCartItems().remove(position);
-                // Notify adapter to update the list view
-                notifyDataSetChanged();
+                if (item != null) {
+                    // Remove item from database
+                    dbHelper.removeItemFromCart(item.getName());
+
+                    // Remove the item from the list
+                    remove(item);
+
+                    // Notify adapter to update the list view
+                    notifyDataSetChanged();
+                }
             });
         } else {
             // For the menu, keep the "Add" functionality
             actionButton.setText("Add");
             actionButton.setOnClickListener(v -> {
-                // Add the item to the cart
-                CartManager.getInstance().addToCart(item);
+                if (item != null) {
+                    // Add the item to the cart
+                    CartManager.getInstance().addToCart(item);
+                }
             });
         }
 
