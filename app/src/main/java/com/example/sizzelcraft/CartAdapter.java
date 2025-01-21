@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -15,14 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import android.widget.ArrayAdapter;
 
+public class CartAdapter extends ArrayAdapter<fooditem> {
 
-public class FoodAdapter extends ArrayAdapter<fooditem> {
+    private boolean isCart;  // Flag to determine if the view is for the cart or the menu
 
-    private ArrayList<fooditem> items;
-
-    public FoodAdapter(@NonNull Context context, @NonNull ArrayList<fooditem> items) {
+    public CartAdapter(@NonNull Context context, @NonNull ArrayList<fooditem> items, boolean isCart) {
         super(context, 0, items);
-        this.items = items;
+        this.isCart = isCart;
     }
 
     @NonNull
@@ -32,7 +30,7 @@ public class FoodAdapter extends ArrayAdapter<fooditem> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.menuitem, parent, false);
         }
 
-        // Get the current FoodItem
+        // Get current food item
         fooditem item = getItem(position);
 
         // Bind views
@@ -40,8 +38,7 @@ public class FoodAdapter extends ArrayAdapter<fooditem> {
         TextView titleView = convertView.findViewById(R.id.item_title);
         TextView descriptionView = convertView.findViewById(R.id.item_description);
         TextView priceView = convertView.findViewById(R.id.item_price);
-        ImageView likeButton = convertView.findViewById(R.id.item_like);
-        Button addToCartButton = convertView.findViewById(R.id.item_add_to_cart);
+        Button actionButton = convertView.findViewById(R.id.item_add_to_cart);  // "Add" button in the layout
 
         // Set data to views
         if (item != null) {
@@ -51,14 +48,24 @@ public class FoodAdapter extends ArrayAdapter<fooditem> {
             priceView.setText(item.getPrice());
         }
 
-        // Set listeners for Like and Add to Cart buttons
-        likeButton.setOnClickListener(v -> Toast.makeText(getContext(), "Liked " + item.getName(), Toast.LENGTH_SHORT).show());
-        addToCartButton.setOnClickListener(v -> {
-            if (item != null) {
+        // Modify button behavior based on whether it's the cart or menu
+        if (isCart) {
+            // Change the text of the button to "Remove" and set its functionality
+            actionButton.setText("Remove");
+            actionButton.setOnClickListener(v -> {
+                // Remove the item from the cart
+                CartManager.getInstance().getCartItems().remove(position);
+                // Notify adapter to update the list view
+                notifyDataSetChanged();
+            });
+        } else {
+            // For the menu, keep the "Add" functionality
+            actionButton.setText("Add");
+            actionButton.setOnClickListener(v -> {
+                // Add the item to the cart
                 CartManager.getInstance().addToCart(item);
-                Toast.makeText(getContext(), "Added to cart: " + item.getName(), Toast.LENGTH_SHORT).show();
-            }
-        });
+            });
+        }
 
         return convertView;
     }

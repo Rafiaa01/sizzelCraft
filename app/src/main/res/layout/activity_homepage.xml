@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="44dp"
         android:drawableStart="@drawable/homee"
         android:background="?attr/selectableItemBackground"
@@ -48,7 +48,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="44dp"
         android:drawableStart="@drawable/parentalcontrol"
         android:background="?attr/selectableItemBackground"
@@ -64,13 +63,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:drawableStart="@drawable/grocerystore"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="44dp"
         android:background="?attr/selectableItemBackground"
-        android:text="cart"
+        android:text="Cart"
         android:textColor="@color/yellow"
         app:layout_constraintStart_toEndOf="@id/btdeals"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnmenu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:drawableStart="@drawable/grocerystore"
+        android:layout_marginTop="44dp"
+        android:background="?attr/selectableItemBackground"
+        android:text="Menu"
+        android:textColor="@color/yellow"
+        app:layout_constraintStart_toEndOf="@id/btncart"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

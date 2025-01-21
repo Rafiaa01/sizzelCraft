@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 public class homepage extends AppCompatActivity {
 
-    Button firstfragment, secondfragment, fourthfragment;
+    Button firstfragment, secondfragment, thirdfragment,fourthfragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +29,7 @@ public class homepage extends AppCompatActivity {
         firstfragment = findViewById(R.id.btnhome);
         secondfragment = findViewById(R.id.btdeals);
         fourthfragment = findViewById(R.id.btncart);
+        thirdfragment=findViewById(R.id.btnmenu);
 
         // Set up the toolbar
         Toolbar toolbar = findViewById(R.id.toolbar1);
@@ -43,6 +44,7 @@ public class homepage extends AppCompatActivity {
         firstfragment.setOnClickListener(v -> replaceFragment(new HomeFragment()));
         secondfragment.setOnClickListener(v -> replaceFragment(new DealsFragment()));
         fourthfragment.setOnClickListener(v -> replaceFragment(new cartfragment()));
+        thirdfragment.setOnClickListener(v -> replaceFragment(new menuFragment()));
 
         // Set CardView click listeners
     }

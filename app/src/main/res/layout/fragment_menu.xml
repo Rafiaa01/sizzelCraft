@@ -8,6 +8,16 @@
     tools:context=".menuFragment">
 
 
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MENU"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="@color/yellow"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"/>
     <ListView
         android:id="@+id/food_list"
         android:layout_width="match_parent"

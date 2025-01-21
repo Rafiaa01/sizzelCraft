@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="200dp"
+        android:hint="Enter Name"
+        android:inputType="textPersonName" />
+
+    <!-- Phone Number Input -->
+    <EditText
+        android:id="@+id/edtPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter Phone Number"
+        android:inputType="phone" />
+
+    <!-- Email Input -->
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress" />
+
+    <!-- Address Input -->
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="Enter Address"
+        android:inputType="textPostalAddress" />
+
+    <TextView
+        android:id="@+id/total_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Total: $0.00"
+        android:textSize="18sp" />
+    <!-- Confirm Order Button -->
+    <Button
+        android:id="@+id/btnConfirmOrder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:text="Confirm Order" />
+</LinearLayout>

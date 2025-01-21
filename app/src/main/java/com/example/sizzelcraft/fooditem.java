@@ -1,6 +1,6 @@
 package com.example.sizzelcraft;
-
-public class fooditem {
+import java.io.Serializable;
+public class fooditem implements Serializable {
     private int imageResId;
     private String name;
     private String description;
@@ -11,6 +11,7 @@ public class fooditem {
         this.name = name;
         this.description = description;
         this.price = price;
+
     }
 
     public int getImageResId() {
