@@ -49,6 +49,7 @@ class cadapter extends BaseAdapter {
         Button addButton = convertView.findViewById(R.id.addbutton);
 
         // Get the current food item
+        //
         foodmodel foodDeal = (foodmodel) getItem(position);
 
         // Set data to views
