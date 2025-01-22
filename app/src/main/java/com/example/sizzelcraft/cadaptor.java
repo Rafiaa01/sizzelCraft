@@ -52,6 +52,7 @@ class cadapter extends BaseAdapter {
         foodmodel foodDeal = (foodmodel) getItem(position);
 
         // Set data to views
+
         nameTextView.setText(foodDeal.getName());
         descriptionTextView.setText(foodDeal.getDescription());
         priceTextView.setText(String.format("$%.2f", foodDeal.getPrice()));
