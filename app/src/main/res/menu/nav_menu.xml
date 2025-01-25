@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn = "navigation_view">
+
+
+        <item
+            android:id="@+id/navhome"
+            android:icon="@drawable/nav_home"
+            android:title="Home"/>
+
+        <item
+            android:id="@+id/navsettings"
+            android:icon="@drawable/nav_setting"
+            android:title="Settings"/>
+
+        <item
+            android:id="@+id/navshare"
+            android:icon="@drawable/nav_share"
+            android:title="Share"/>
+
+        <item
+            android:id="@+id/navabout"
+            android:icon="@drawable/nav_about"
+            android:title="About Us"/>
+
+    <item
+        android:title="">
+
+        <menu>
+            <item
+                android:id="@+id/navlogout"
+                android:icon="@drawable/baseline_account_circle_24"
+                android:title="Logout"/>
+        </menu>
+
+    </item>
+
+</menu>

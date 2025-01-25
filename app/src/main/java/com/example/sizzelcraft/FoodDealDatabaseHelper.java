@@ -11,7 +11,7 @@ import java.util.List;
 
 public class FoodDealDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "food_deals.db";
+    private static final String DATABASE_NAME = "food_deal.db";
     private static final int DATABASE_VERSION = 1;
 
     private static final String TABLE_FOOD_DEALS = "food_deals";
@@ -60,26 +60,33 @@ public class FoodDealDatabaseHelper extends SQLiteOpenHelper {
     public List<foodmodel> getAllFoodDeals() {
         List<foodmodel> foodDeals = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
 
-        Cursor cursor = db.query(TABLE_FOOD_DEALS, null, null, null, null, null, null);
-        if (cursor != null) {
-            int nameIndex = cursor.getColumnIndexOrThrow(COLUMN_NAME);
-            int descriptionIndex = cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION);
-            int priceIndex = cursor.getColumnIndexOrThrow(COLUMN_PRICE);
-            int imageResIdIndex = cursor.getColumnIndexOrThrow(COLUMN_IMAGE_RES_ID);
+        try {
+            cursor = db.query(TABLE_FOOD_DEALS, null, null, null, null, null, null);
+            if (cursor != null) {
+                int nameIndex = cursor.getColumnIndexOrThrow(COLUMN_NAME);
+                int descriptionIndex = cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION);
+                int priceIndex = cursor.getColumnIndexOrThrow(COLUMN_PRICE);
+                int imageResIdIndex = cursor.getColumnIndexOrThrow(COLUMN_IMAGE_RES_ID);
 
-            while (cursor.moveToNext()) {
-                String name = cursor.getString(nameIndex);
-                String description = cursor.getString(descriptionIndex);
-                double price = cursor.getDouble(priceIndex);
-                int imageResId = cursor.getInt(imageResIdIndex);
+                while (cursor.moveToNext()) {
+                    String name = cursor.getString(nameIndex);
+                    String description = cursor.getString(descriptionIndex);
+                    double price = cursor.getDouble(priceIndex);
+                    int imageResId = cursor.getInt(imageResIdIndex);
 
-                foodDeals.add(new foodmodel(name, imageResId, description, price));
+                    foodDeals.add(new foodmodel(name, imageResId, description, price));
+                }
             }
-            cursor.close();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            db.close();
         }
 
-        db.close();
         return foodDeals;
     }
+
 }

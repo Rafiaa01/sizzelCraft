@@ -38,7 +38,7 @@ public class menuFragment extends Fragment {
         FoodAdapter adapter = new FoodAdapter(requireContext(), foodItems);
 
         // Bind adapter to ListView using binding
-        binding.foodList.setAdapter(adapter);
+        binding.foodlist.setAdapter(adapter);
 
         return binding.getRoot(); // Return the root view from the binding
     }

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
     android:theme="@style/ThemeOverlay.SizzelCraft.FullscreenContainer"
+    android:id="@+id/menufrag"
     tools:context=".menuFragment">
 
 
@@ -16,13 +17,14 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="@color/yellow"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:layout_marginLeft="20dp"/>
+
     <ListView
-        android:id="@+id/food_list"
+        android:id="@+id/foodlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:dividerHeight="1dp" />
 
 </FrameLayout>

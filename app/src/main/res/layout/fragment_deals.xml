@@ -8,15 +8,27 @@
     tools:context=".DealsFragment">
     <!-- activity_main.xml -->
     <LinearLayout
+        android:id="@+id/dealfrag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:text="Deals"
+            android:textColor="@color/yellow"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
         <ListView
             android:id="@+id/foodListView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp" />
+            android:layout_height="570dp"
+            android:layout_marginTop="1dp" />
 
     </LinearLayout>
 

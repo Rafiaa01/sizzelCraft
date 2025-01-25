@@ -4,27 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="10dp"
     android:background="@drawable/gradient"
     tools:context=".HomeFragment">
     <!-- Search Bar -->
 
-    <!-- Container for Cards -->
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_margin="36dp"
-        android:background="@drawable/round_white_background"
-        android:hint="Search"
-        android:iconifiedByDefault="false"
-        android:textColor="@color/black" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="0dp"
+        android:id="@+id/homefrag"
         android:orientation="vertical"
         android:padding="16dp">
 
@@ -32,16 +21,17 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardNew"
             android:layout_width="wrap_content"
-            android:layout_height="117dp"
+            android:layout_height="154dp"
             android:layout_marginBottom="16dp"
             android:background="@color/fixed_white"
             app:cardCornerRadius="25dp"
             app:cardElevation="8dp"> <!-- Background Color -->
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_width="376dp"
+                android:layout_height="153dp"
                 android:background="@drawable/foodback"
+                android:baselineAligned="false"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -78,7 +68,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="119dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -130,7 +120,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="107dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="16dp">
@@ -141,7 +131,7 @@
                     android:layout_height="50dp"
                     android:layout_marginEnd="16dp"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/deals" />
+                    android:src="@drawable/dealss" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -181,7 +171,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="113dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:padding="16dp">

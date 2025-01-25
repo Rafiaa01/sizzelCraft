@@ -28,4 +28,6 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="deals_content">deals_content</string>
     <string name="add_to_cart">Add To Cart</string>
+    <string name="close_nav">open_nav</string>
+    <string name="open_nav">close</string>
 </resources>

@@ -36,14 +36,15 @@
 
     <TextView
         android:id="@+id/t2"
-        android:layout_width="304dp"
-        android:layout_height="36dp"
+        android:layout_width="309dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
-        android:text="If you want to continue click on next Button"
-        android:textColor="#fff"
-        android:textSize="15sp"
+        android:text="If you want to continue click on Button"
+        android:textColor="@color/yellow"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.647"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/t1" />
 
@@ -55,6 +56,7 @@
         android:text="Next"
         android:textColor="@color/black"
         android:textSize="19sp"
+        android:padding="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

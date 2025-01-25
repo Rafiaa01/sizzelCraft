@@ -49,4 +49,8 @@ dependencies {
     implementation("com.google.firebase:firebase-database:20.0.5")
     implementation("com.google.firebase:firebase-core:21.0.0")
     implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.android.material:material:1.9.0")
+
+
+
 }

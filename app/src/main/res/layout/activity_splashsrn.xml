@@ -41,18 +41,18 @@
 
     <TextView
         android:id="@+id/text4"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
+        android:layout_width="296dp"
+        android:layout_height="36dp"
         android:layout_below="@+id/ff"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
 
         android:layout_alignParentBottom="true"
         android:layout_gravity="center"
-        android:layout_marginStart="79dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="258dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="57dp"
         android:text="Delight in Every Bite – Your Food, Your Way!"
         android:textColor="@color/yellow"
         android:textSize="13sp" />
