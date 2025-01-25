@@ -1,98 +1,184 @@
 package com.example.sizzelcraft;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-public class homepage extends AppCompatActivity {
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
-    Button firstfragment, secondfragment, thirdfragment,fourthfragment;
+public class homepage extends AppCompatActivity  {
+
+    private DrawerLayout drawerLayout;
+    BottomNavigationView bottomNavigationView;
+    private int cartquantity=0;
+
+
+    // Initialize views
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_homepage);
+        setContentView(R.layout.activity_homepage); // Ensure this matches your XML file name
 
-        // Initialize buttons and card views
-        firstfragment = findViewById(R.id.btnhome);
-        secondfragment = findViewById(R.id.btdeals);
-        fourthfragment = findViewById(R.id.btncart);
-        thirdfragment=findViewById(R.id.btnmenu);
+        // Initialize views
+        drawerLayout = findViewById(R.id.drawerlayout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
 
         // Set up the toolbar
-        Toolbar toolbar = findViewById(R.id.toolbar1);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.yellow)); // Set title text color
-        toolbar.setTitle("Sizzel Craft"); // Set the toolbar title
         setSupportActionBar(toolbar);
 
-        // Default fragment
-        replaceFragment(new HomeFragment());
+        // Set up ActionBarDrawerToggle
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this,
+                drawerLayout,
+                toolbar,
+                R.string.open_nav, // Add this string in res/values/strings.xml
+                R.string.close_nav  // Add this string in res/values/strings.xml
+        );
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+View headerview=navigationView.getHeaderView(0);
+TextView username=headerview.findViewById(R.id.lognamebar);
+TextView email=headerview.findViewById(R.id.logembr);
+        MydbHelper dbHelper = new MydbHelper(this);
+        String[] userData = dbHelper.getUserData();  // This will return an array with name and email
 
-        // Set button click listeners
-        firstfragment.setOnClickListener(v -> replaceFragment(new HomeFragment()));
-        secondfragment.setOnClickListener(v -> replaceFragment(new DealsFragment()));
-        fourthfragment.setOnClickListener(v -> replaceFragment(new cartfragment()));
-        thirdfragment.setOnClickListener(v -> replaceFragment(new menuFragment()));
+        // Set the username and email to the TextViews
+        username.setText(userData[0]);  // Set the username
+        email.setText(userData[1]);  //
+        // Set NavigationView Listener
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-        // Set CardView click listeners
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+
+                // Log the item clicked
+                Log.d("Navigation", "Selected Item ID: " + itemId);
+
+                if (itemId == R.id.navhome) {
+                    Log.d("Navigation", "Home selected");
+                    replaceFragment(new HomeFragment());
+                } else if (itemId == R.id.navsettings) {
+                    Log.d("Navigation", "Settings selected");
+                    startActivity(new Intent(homepage.this, signin.class));
+                } else if (itemId == R.id.navabout) {
+                    Log.d("Navigation", "About selected");
+                    startActivity(new Intent(homepage.this, Aboutus.class));
+                } else if (itemId == R.id.navshare) {
+                    Log.d("Navigation", "Share selected");
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Sizzel Craft!");
+                    startActivity(Intent.createChooser(shareIntent, "Share via"));
+                } else if (itemId == R.id.navlogout) {
+                    Log.d("Navigation", "Logout selected");
+                    startActivity(new Intent(homepage.this, logout.class));
+                }
+
+                // Close the navigation drawer
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;  // Ensure this is true to mark the item as handled
+            }
+                                                         });
+
+            // Load the default fragment (e.g., HomeFragment) when the activity starts
+        if (savedInstanceState == null) {
+            replaceFragment(new HomeFragment());
+            navigationView.setCheckedItem(R.id.navhome); // Set default selected item
+        }
+// Set up BottomNavigationView listener
+        bottomNavigationView.setBackground(null);
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (item.getItemId() == R.id.homee) {
+                replaceFragment(new HomeFragment());
+            } else if (item.getItemId() == R.id.menu) {
+                replaceFragment(new menuFragment());
+            } else if (item.getItemId() == R.id.deals) {
+                replaceFragment(new DealsFragment());
+            } else if (item.getItemId() == R.id.cart) {
+
+                replaceFragment(new LocFragment());
+
+            }
+            return true;
+        });
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menuitem, menu);
-        return true;
+        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.action_cart); // Retrieve the actual MenuItem
+        View actionView = menuItem.getActionView();
+        TextView cartBadge = actionView.findViewById(R.id.cart_badge_text);
+        cartBadge.setText("2"); // Set the badge count
+        actionView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(menuItem);
+            }
+        });
+        return true; // Return true to display the menu
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
-        if (itemId == R.id.setting) {
-            startActivity(new Intent(homepage.this, logout.class));
-        } else if (itemId == R.id.about) {
-            startActivity(new Intent(homepage.this, Aboutus.class));
-            Toast.makeText(this, "About Sizzel Craft", Toast.LENGTH_SHORT).show();
-        } else if (itemId == R.id.share) {
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, "Check out Sizzel Craft: [AndroidStudioProjects\\sizzelCraft2]");
-            startActivity(Intent.createChooser(shareIntent, "Share via"));
-        } else {
-            return super.onOptionsItemSelected(item);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.action_cart) {
+            replaceFragment(new cartfragment());
+            Toast.makeText(this, "Cart clicked!", Toast.LENGTH_SHORT).show();
+            return true;
         }
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        new AlertDialog.Builder(this)
-                .setMessage("Are you sure you want to exit?")
-                .setCancelable(false)
-                .setPositiveButton("Yes", (dialog, id) -> {
-                    super.onBackPressed();
-                    moveTaskToBack(true);
-                })
-                .setNegativeButton("No", null)
-                .show();
-    }
+
 
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
-        fragmentTransaction.addToBackStack(null); // Optional
         fragmentTransaction.commit();
     }
+    private long backPressedTime;
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
+
 
 }

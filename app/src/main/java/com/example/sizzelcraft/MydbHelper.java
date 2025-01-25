@@ -107,6 +107,23 @@ import java.util.ArrayList;
             }
             return false; // Return false if no user found
         }
+        // Get user data from the database
+        public String[] getUserData() {
+            SQLiteDatabase db = this.getReadableDatabase();
+            String[] userData = new String[2]; // Array to hold name and email
+
+            String query = "SELECT * FROM " + TABLE_NAME + " LIMIT 1";
+            Cursor cursor = db.rawQuery(query, null);
+
+            if (cursor.moveToFirst()) {
+                userData[0] = cursor.getString(cursor.getColumnIndexOrThrow(USERNAME));
+                userData[1] = cursor.getString(cursor.getColumnIndexOrThrow(EMAIL));
+            }
+
+            cursor.close();
+            db.close();
+            return userData;
+        }
 
     }
 

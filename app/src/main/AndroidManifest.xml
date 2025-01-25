@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- Permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SizzelCraft"
         tools:targetApi="31">
+        <activity
+            android:name=".Location"
+            android:exported="false" />
         <activity
             android:name=".Checkout"
             android:exported="false" />
@@ -44,6 +52,11 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDp4c54ibpeIkr5OUCaOwnhYPP4ROVzFAs" />
     </application>
+    <!-- Google Maps API Key -->
+
 
 </manifest>

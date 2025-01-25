@@ -75,8 +75,11 @@ public class CartAdapter extends ArrayAdapter<fooditem> {
                     CartManager.getInstance().addToCart(item);
                 }
             });
+
         }
+
 
         return convertView;
     }
+
 }

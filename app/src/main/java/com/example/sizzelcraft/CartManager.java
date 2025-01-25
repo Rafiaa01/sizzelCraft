@@ -24,4 +24,17 @@ public class CartManager {
     public void addToCart(fooditem item) {
         cartItems.add(item);
     }
-}
+
+    // Get cart size
+    public int getCartSize() {
+        return cartItems.size();
+    }
+
+    // Get all cart items
+
+    // Remove item from cart
+    public void removeFromCart(fooditem item) {
+        cartItems.remove(item);
+
+
+    }}
