@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     android:padding="16dp">
+
+
+    <TextView
+        android:id="@+id/titl2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="30dp"
+        android:text="CHECK OUT"
+        android:textColor="@color/yellow"
+        android:textSize="35dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/title"
@@ -13,18 +27,19 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="@color/yellow"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="0dp"/>
     <!-- Name Input -->
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
         android:text="Name"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
+        android:textColor="@color/yellow"
         android:textSize="15dp"
-        android:textColor="@color/black" />
+        android:textStyle="bold"
+        tools:ignore="TextSizeCheck" />
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
@@ -37,9 +52,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Phone Number"
-        android:textStyle="bold"
+        android:textColor="@color/yellow"
         android:textSize="15dp"
-        android:textColor="@color/black" />
+        android:textStyle="bold"
+        tools:ignore="TextSizeCheck" />
     <!-- Phone Number Input -->
     <EditText
         android:id="@+id/edtPhoneNumber"
@@ -53,9 +69,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="E-mail"
-        android:textStyle="bold"
+        android:textColor="@color/yellow"
         android:textSize="15dp"
-        android:textColor="@color/black" />
+        android:textStyle="bold"
+        tools:ignore="TextSizeCheck" />
     <!-- Email Input -->
     <EditText
         android:id="@+id/edtEmail"
@@ -69,9 +86,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Address"
-        android:textStyle="bold"
+        android:textColor="@color/yellow"
         android:textSize="15dp"
-        android:textColor="@color/black" />
+        android:textStyle="bold"
+        tools:ignore="TextSizeCheck" />
     <!-- Address Input -->
     <EditText
         android:id="@+id/edtAddress"
@@ -86,7 +104,7 @@
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="140dp"
         android:layout_gravity="right"
         />
     <!-- Confirm Order Button -->
@@ -94,5 +112,8 @@
         android:id="@+id/btnConfirmOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Confirm Order" />
+        android:text="Confirm Order"
+        android:textColor="@color/black"
+        tools:ignore="TouchTargetSizeCheck" />
+
 </LinearLayout>

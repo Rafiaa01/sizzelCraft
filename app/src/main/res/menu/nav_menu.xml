@@ -12,7 +12,7 @@
 
         <item
             android:id="@+id/navsettings"
-            android:icon="@drawable/nav_setting"
+            android:icon="@drawable/location24"
             android:title="Track order"/>
 
         <item
