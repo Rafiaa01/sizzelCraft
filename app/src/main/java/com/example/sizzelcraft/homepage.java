@@ -1,6 +1,8 @@
 package com.example.sizzelcraft;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -26,9 +28,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+import android.content.BroadcastReceiver;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
 
 public class homepage extends AppCompatActivity  {
 
@@ -36,6 +41,8 @@ public class homepage extends AppCompatActivity  {
     BottomNavigationView bottomNavigationView;
     private int cartquantity=0;
 
+    private TextView cartBadge;
+    private CartDatabaseHelper dbcart;
 
     // Initialize views
 
@@ -44,6 +51,9 @@ public class homepage extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage); // Ensure this matches your XML file name
 
+        // Register BroadcastReceiver
+        LocalBroadcastManager.getInstance(this).registerReceiver(cartUpdateReceiver,
+                new IntentFilter("cart-updated"));
         // Initialize views
         drawerLayout = findViewById(R.id.drawerlayout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -64,15 +74,17 @@ public class homepage extends AppCompatActivity  {
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-View headerview=navigationView.getHeaderView(0);
-TextView username=headerview.findViewById(R.id.lognamebar);
-TextView email=headerview.findViewById(R.id.logembr);
+        View headerview=navigationView.getHeaderView(0);
+        TextView username=headerview.findViewById(R.id.lognamebar);
+        TextView email=headerview.findViewById(R.id.logembr);
 
-            MydbHelper dbHelper = new MydbHelper(this);
-            String[] userData = dbHelper.getUserData();
+        dbcart=new CartDatabaseHelper(this);
+        updateCartBadge();
+        MydbHelper dbHelper = new MydbHelper(this);
+        String[] userData = dbHelper.getUserData();
 
-            username.setText(userData[0]); // Display username
-            email.setText(userData[1]);   // Display email
+        username.setText(userData[0]); // Display username
+        email.setText(userData[1]);   // Display email
 
         // Set NavigationView Listener
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -108,9 +120,9 @@ TextView email=headerview.findViewById(R.id.logembr);
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;  // Ensure this is true to mark the item as handled
             }
-                                                         });
+        });
 
-            // Load the default fragment (e.g., HomeFragment) when the activity starts
+        // Load the default fragment (e.g., HomeFragment) when the activity starts
         if (savedInstanceState == null) {
             replaceFragment(new HomeFragment());
             navigationView.setCheckedItem(R.id.navhome); // Set default selected item
@@ -137,8 +149,8 @@ TextView email=headerview.findViewById(R.id.logembr);
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         MenuItem menuItem = menu.findItem(R.id.action_cart); // Retrieve the actual MenuItem
         View actionView = menuItem.getActionView();
-        TextView cartBadge = actionView.findViewById(R.id.cart_badge_text);
-        cartBadge.setText("2"); // Set the badge count
+        cartBadge = actionView.findViewById(R.id.cart_badge_text);
+        updateCartBadge(); // Update badge count dynamically
         actionView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,6 +191,39 @@ TextView email=headerview.findViewById(R.id.logembr);
             Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
+    }
+
+    private void updateCartBadge() {
+        if (cartBadge != null) {
+            int cartCount = dbcart.TotalCartItemCount();
+
+            if (cartCount > 0) {
+                cartBadge.setText(String.valueOf(cartCount));
+                cartBadge.setVisibility(View.VISIBLE); // Show badge
+            } else {
+                cartBadge.setVisibility(View.GONE); // Hide badge if empty
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateCartBadge(); // Refresh cart badge when homepage is resumed
+    }
+    // BroadcastReceiver to update cart badge dynamically
+    private final BroadcastReceiver cartUpdateReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateCartBadge(); // Update cart badge whenever cart is updated
+        }
+    };
+
+    // Unregister receiver when activity is destroyed to prevent memory leaks
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(cartUpdateReceiver);
     }
 
 

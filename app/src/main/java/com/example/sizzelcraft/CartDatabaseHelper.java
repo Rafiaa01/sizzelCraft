@@ -4,10 +4,13 @@ import static android.content.Context.MODE_PRIVATE;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.util.ArrayList;
 public class CartDatabaseHelper extends SQLiteOpenHelper {
@@ -57,6 +60,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         db.insert(TABLE_NAME, null, values);
         db.close();
 
+        sendCartUpdateBroadcast();
         // Update cart item count in SharedPreferences
         int currentCount = getCartItemCount();
         setCartItemCount(currentCount + 1); // Increment count
@@ -68,6 +72,7 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, COLUMN_NAME + " = ?", new String[]{itemName});
         db.close();
 
+        sendCartUpdateBroadcast();
         // Update cart item count in SharedPreferences
         int currentCount = getCartItemCount();
         setCartItemCount(currentCount - 1); // Decrement count
@@ -110,4 +115,27 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         editor.putInt("item_count", itemCount);
         editor.apply();
     }
+    // Get total number of items present in the cart (count of rows)
+    public int TotalCartItemCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TABLE_NAME, null);
+        int count = 0;
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                count = cursor.getInt(0); // Get the count from the first column
+            }
+            cursor.close();
+        }
+
+        db.close();
+        return count;
+    }
+
+    // Helper method to send cart update broadcast
+    private void sendCartUpdateBroadcast() {
+        Intent intent = new Intent("cart-updated");
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
+    }
+
 }
