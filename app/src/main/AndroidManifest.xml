@@ -19,6 +19,9 @@
         android:theme="@style/Theme.SizzelCraft"
         tools:targetApi="31">
         <activity
+            android:name=".OrderDetails"
+            android:exported="false" />
+        <activity
             android:name=".OrderConfirmationActivity"
             android:exported="false" />
         <activity

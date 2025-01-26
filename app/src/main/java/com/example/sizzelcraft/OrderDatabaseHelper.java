@@ -52,7 +52,11 @@ public class OrderDatabaseHelper extends SQLiteOpenHelper {
         return db.insert(TABLE_NAME, null, values);
     }
 
-    // Method to get order details by order ID
+    public Cursor getOrderByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM orders WHERE name = ?", new String[]{name});
+    }
+
     public Cursor getOrderById(long orderId) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.query(TABLE_NAME, null, COLUMN_ID + "=?", new String[]{String.valueOf(orderId)}, null, null, null);

@@ -1,15 +1,20 @@
 package com.example.sizzelcraft;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 public class OrderConfirmationActivity extends AppCompatActivity {
 
     TextView txtOrderId, txtOrderDetails;
+    Button btnTrackOrder;
     OrderDatabaseHelper orderDatabaseHelper;
 
     @Override
@@ -19,6 +24,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
         txtOrderId = findViewById(R.id.txtOrderId);
         txtOrderDetails = findViewById(R.id.txtOrderDetails);
+        btnTrackOrder = findViewById(R.id.Trackorder);
         orderDatabaseHelper = new OrderDatabaseHelper(this);
 
         // Get order ID from intent
@@ -49,5 +55,17 @@ public class OrderConfirmationActivity extends AppCompatActivity {
             Toast.makeText(this, "Order not found!", Toast.LENGTH_SHORT).show();
             finish();
         }
+
+        // Set button click listener to open Track Order Fragment
+        btnTrackOrder.setOnClickListener(v -> openTrackOrderFragment());
+    }
+
+    private void openTrackOrderFragment() {
+        LocFragment locFragment = new LocFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(android.R.id.content, locFragment); // Replace with the fragment
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
