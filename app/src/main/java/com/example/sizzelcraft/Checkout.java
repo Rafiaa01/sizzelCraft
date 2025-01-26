@@ -17,6 +17,7 @@ public class Checkout extends AppCompatActivity {
     TextView totalPriceView;
     double totalPrice;
     OrderDatabaseHelper orderDatabaseHelper; // SQLite Helper
+    CartDatabaseHelper cartdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class Checkout extends AppCompatActivity {
 
         // Initialize database helper
         orderDatabaseHelper = new OrderDatabaseHelper(this);
+        cartdb=new CartDatabaseHelper(this);
 
         // Get total price from intent
         totalPrice = getIntent().getDoubleExtra("total_price", 0.0);
@@ -54,6 +56,7 @@ public class Checkout extends AppCompatActivity {
                     // Insert order into database and get order ID
                     long orderId = orderDatabaseHelper.insertOrder(name, phoneNumber, email, address, totalPrice);
 
+                    cartdb.deleteAllCartItems();
                     // Open order confirmation page
                     Intent intent = new Intent(Checkout.this, OrderConfirmationActivity.class);
                     intent.putExtra("order_id", orderId);
