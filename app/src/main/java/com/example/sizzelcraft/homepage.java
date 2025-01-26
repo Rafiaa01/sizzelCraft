@@ -67,12 +67,13 @@ public class homepage extends AppCompatActivity  {
 View headerview=navigationView.getHeaderView(0);
 TextView username=headerview.findViewById(R.id.lognamebar);
 TextView email=headerview.findViewById(R.id.logembr);
-        MydbHelper dbHelper = new MydbHelper(this);
-        String[] userData = dbHelper.getUserData();  // This will return an array with name and email
 
-        // Set the username and email to the TextViews
-        username.setText(userData[0]);  // Set the username
-        email.setText(userData[1]);  //
+            MydbHelper dbHelper = new MydbHelper(this);
+            String[] userData = dbHelper.getUserData();
+
+            username.setText(userData[0]); // Display username
+            email.setText(userData[1]);   // Display email
+
         // Set NavigationView Listener
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
