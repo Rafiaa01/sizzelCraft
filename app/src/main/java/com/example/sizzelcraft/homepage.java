@@ -50,7 +50,7 @@ public class homepage extends AppCompatActivity  {
         Toolbar toolbar = findViewById(R.id.toolbar);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-
+        navigationView.bringToFront();
         // Set up the toolbar
         setSupportActionBar(toolbar);
 
@@ -88,7 +88,7 @@ TextView email=headerview.findViewById(R.id.logembr);
                     replaceFragment(new HomeFragment());
                 } else if (itemId == R.id.navsettings) {
                     Log.d("Navigation", "Settings selected");
-                    startActivity(new Intent(homepage.this, signin.class));
+                    replaceFragment(new LocFragment());
                 } else if (itemId == R.id.navabout) {
                     Log.d("Navigation", "About selected");
                     startActivity(new Intent(homepage.this, Aboutus.class));

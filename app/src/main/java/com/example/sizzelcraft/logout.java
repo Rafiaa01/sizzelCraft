@@ -64,11 +64,5 @@ public class logout extends AppCompatActivity {
         finish(); // Finish current activity
     }
 
-    @Override
-    public void onBackPressed() {
-        // Handle back button press
-        super.onBackPressed();
-        Toast.makeText(this, "Press back again to exit", Toast.LENGTH_SHORT).show();
-        moveTaskToBack(true);
-    }
+
 }
