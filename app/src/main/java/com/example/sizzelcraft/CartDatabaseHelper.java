@@ -137,5 +137,11 @@ public class CartDatabaseHelper extends SQLiteOpenHelper {
         Intent intent = new Intent("cart-updated");
         LocalBroadcastManager.getInstance(context).sendBroadcast(intent);
     }
+    public void deleteAllCartItems() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("cart", null, null); // Replace "cart_table" with your actual table name
+        db.close();
+    }
+
 
 }
