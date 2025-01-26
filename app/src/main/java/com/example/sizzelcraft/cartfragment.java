@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -48,10 +49,15 @@ public class cartfragment extends Fragment {
         // Checkout button functionality
         Button checkoutButton = view.findViewById(R.id.checkout);
         checkoutButton.setOnClickListener(v -> {
-            // Open the CheckoutActivity
-            Intent intent = new Intent(getContext(), Checkout.class);
-            intent.putExtra("total_price", totalPrice);
-            startActivity(intent);
+            if (cartItems.isEmpty()) {
+                // Show message that the cart is empty
+                Toast.makeText(getContext(), "Your cart is empty", Toast.LENGTH_SHORT).show();
+            } else {
+                // Open the CheckoutActivity
+                Intent intent = new Intent(getContext(), Checkout.class);
+                intent.putExtra("total_price", totalPrice);
+                startActivity(intent);
+            }
         });
 
         return view;
