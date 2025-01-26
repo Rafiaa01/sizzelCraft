@@ -19,7 +19,7 @@
     <ListView
         android:id="@+id/cart_list"
         android:layout_width="345dp"
-        android:layout_height="323dp"
+        android:layout_height="398dp"
         android:layout_marginTop="20dp" />
 
     <TextView
