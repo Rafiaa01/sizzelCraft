@@ -6,87 +6,60 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FoodDealDatabaseHelper extends SQLiteOpenHelper {
 
-    private static final String DATABASE_NAME = "food_deal.db";
+    private static final String DATABASE_NAME = "fooddeals.db";
     private static final int DATABASE_VERSION = 1;
-
-    private static final String TABLE_FOOD_DEALS = "food_deals";
+    private static final String TABLE_NAME = "FoodDeals";
     private static final String COLUMN_ID = "id";
+    private static final String COLUMN_IMAGE_RES_ID = "imageResId";
     private static final String COLUMN_NAME = "name";
     private static final String COLUMN_DESCRIPTION = "description";
     private static final String COLUMN_PRICE = "price";
-    private static final String COLUMN_IMAGE_RES_ID = "image_res_id";
 
     public FoodDealDatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    private void insertSampleData(SQLiteDatabase db) {
-    }
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTableQuery = "CREATE TABLE " + TABLE_FOOD_DEALS + " (" +
+        String createTableQuery = "CREATE TABLE " + TABLE_NAME + " (" +
                 COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_IMAGE_RES_ID + " INTEGER, " +
                 COLUMN_NAME + " TEXT, " +
                 COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_PRICE + " REAL, " +
-                COLUMN_IMAGE_RES_ID + " INTEGER)";
+                COLUMN_PRICE + " TEXT)";
         db.execSQL(createTableQuery);
+
+        // Insert sample data
+        insertSampleData(db);
+    }
+
+    private void insertSampleData(SQLiteDatabase db) {
+        insertFoodDeal(db, R.drawable.burgerdeals, "Burger & Fries Combo", "Combo deal with fries and drink", "$7.99");
+        insertFoodDeal(db, R.drawable.pizzahdeals, "Family Pizza Pack", "Large pizza with drinks for the family", "$19.99");
+        insertFoodDeal(db, R.drawable.twopersondeal, "Lunch Special", "Daily lunch combo with dessert", "$9.99");
+        insertFoodDeal(db, R.drawable.friendsdeals, "Dessert Deal", "Buy 1 get 1 free ice cream", "$2.99");
+        insertFoodDeal(db, R.drawable.onepersondeal, "Taco Tuesday", "Special taco deal available on Tuesdays", "$4.99");
+    }
+
+    private void insertFoodDeal(SQLiteDatabase db, int imageResId, String name, String description, String price) {
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_IMAGE_RES_ID, imageResId);
+        values.put(COLUMN_NAME, name);
+        values.put(COLUMN_DESCRIPTION, description);
+        values.put(COLUMN_PRICE, price);
+        db.insert(TABLE_NAME, null, values);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOOD_DEALS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
-    public void insertFoodDeal(foodmodel foodDeal) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_NAME, foodDeal.getName());
-        values.put(COLUMN_DESCRIPTION, foodDeal.getDescription());
-        values.put(COLUMN_PRICE, foodDeal.getPrice());
-        values.put(COLUMN_IMAGE_RES_ID, foodDeal.getImageResId());
-        db.insert(TABLE_FOOD_DEALS, null, values);
-        db.close();
-    }
-
-    public List<foodmodel> getAllFoodDeals() {
-        List<foodmodel> foodDeals = new ArrayList<>();
+    public Cursor getAllFoodDeals() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = null;
-
-        try {
-            cursor = db.query(TABLE_FOOD_DEALS, null, null, null, null, null, null);
-            if (cursor != null) {
-                int nameIndex = cursor.getColumnIndexOrThrow(COLUMN_NAME);
-                int descriptionIndex = cursor.getColumnIndexOrThrow(COLUMN_DESCRIPTION);
-                int priceIndex = cursor.getColumnIndexOrThrow(COLUMN_PRICE);
-                int imageResIdIndex = cursor.getColumnIndexOrThrow(COLUMN_IMAGE_RES_ID);
-
-                while (cursor.moveToNext()) {
-                    String name = cursor.getString(nameIndex);
-                    String description = cursor.getString(descriptionIndex);
-                    double price = cursor.getDouble(priceIndex);
-                    int imageResId = cursor.getInt(imageResIdIndex);
-
-                    foodDeals.add(new foodmodel(name, imageResId, description, price));
-                }
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
-            db.close();
-        }
-
-        return foodDeals;
+        return db.query(TABLE_NAME, null, null, null, null, null, null);
     }
-
 }
