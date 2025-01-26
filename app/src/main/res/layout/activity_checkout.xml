@@ -12,7 +12,7 @@
         android:id="@+id/titl2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="0dp"
+        android:layout_marginLeft="50dp"
         android:layout_marginTop="30dp"
         android:text="CHECK OUT"
         android:textColor="@color/yellow"
