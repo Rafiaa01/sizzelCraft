@@ -3,7 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/gradient"
     android:padding="16dp">
+
+    <TextView
+        android:id="@+id/confirmation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Confirmed"
+        android:textColor="@color/yellow"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your order id and details "
+        android:textColor="@color/yellow"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"/>
 
     <TextView
         android:id="@+id/txtOrderId"
@@ -11,7 +32,10 @@
         android:layout_height="wrap_content"
         android:text="Order ID: "
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
         android:id="@+id/txtOrderDetails"
@@ -19,5 +43,6 @@
         android:layout_height="wrap_content"
         android:text="Order Details: "
         android:textSize="18sp"
+        android:textColor="@color/white"
         android:layout_marginTop="10dp"/>
 </LinearLayout>
