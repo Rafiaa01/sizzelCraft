@@ -1,6 +1,8 @@
 package com.example.sizzelcraft;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -35,11 +37,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class homepage extends AppCompatActivity  {
+public class homepage extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
     BottomNavigationView bottomNavigationView;
-    private int cartquantity=0;
+    private int cartquantity = 0;
 
     private TextView cartBadge;
     private CartDatabaseHelper dbcart;
@@ -74,11 +76,11 @@ public class homepage extends AppCompatActivity  {
         );
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        View headerview=navigationView.getHeaderView(0);
-        TextView username=headerview.findViewById(R.id.lognamebar);
-        TextView email=headerview.findViewById(R.id.logembr);
+        View headerview = navigationView.getHeaderView(0);
+        TextView username = headerview.findViewById(R.id.lognamebar);
+        TextView email = headerview.findViewById(R.id.logembr);
 
-        dbcart=new CartDatabaseHelper(this);
+        dbcart = new CartDatabaseHelper(this);
         updateCartBadge();
         MydbHelper dbHelper = new MydbHelper(this);
         String[] userData = dbHelper.getUserData();
@@ -144,6 +146,7 @@ public class homepage extends AppCompatActivity  {
             return true;
         });
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.toolbar_menu, menu);
@@ -173,25 +176,13 @@ public class homepage extends AppCompatActivity  {
     }
 
 
-
     private void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.framelayout, fragment);
         fragmentTransaction.commit();
     }
-    private long backPressedTime;
 
-    @Override
-    public void onBackPressed() {
-        if (backPressedTime + 2000 > System.currentTimeMillis()) {
-            super.onBackPressed();
-            return;
-        } else {
-            Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
-        }
-        backPressedTime = System.currentTimeMillis();
-    }
 
     private void updateCartBadge() {
         if (cartBadge != null) {
@@ -211,6 +202,7 @@ public class homepage extends AppCompatActivity  {
         super.onResume();
         updateCartBadge(); // Refresh cart badge when homepage is resumed
     }
+
     // BroadcastReceiver to update cart badge dynamically
     private final BroadcastReceiver cartUpdateReceiver = new BroadcastReceiver() {
         @Override
@@ -226,5 +218,32 @@ public class homepage extends AppCompatActivity  {
         LocalBroadcastManager.getInstance(this).unregisterReceiver(cartUpdateReceiver);
     }
 
+    /**
+     *
+     */
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setTitle("Alert")
+                .setMessage("Do you want to exit?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Exit the app
+                        finishAffinity(); // Ensures the entire task is closed
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Show a Toast message and dismiss the dialog
+                        Toast.makeText(getApplicationContext(), "Nothing happened", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
+                    }
+                })
+                .setCancelable(false) // Prevent closing the dialog by touching outside
+                .show();
 
+        // Do not call super.onBackPressed() here to avoid unwanted behavior
+    }
 }
