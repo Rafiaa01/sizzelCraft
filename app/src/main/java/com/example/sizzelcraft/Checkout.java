@@ -1,5 +1,6 @@
 package com.example.sizzelcraft;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -7,13 +8,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-
-import java.util.ArrayList;
 
 public class Checkout extends AppCompatActivity {
 
@@ -21,6 +16,7 @@ public class Checkout extends AppCompatActivity {
     Button btnConfirmOrder;
     TextView totalPriceView;
     double totalPrice;
+    OrderDatabaseHelper orderDatabaseHelper; // SQLite Helper
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,31 +30,35 @@ public class Checkout extends AppCompatActivity {
         btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
         totalPriceView = findViewById(R.id.total_price1);
 
-        // Get the total price from the Intent
-        totalPrice = getIntent().getDoubleExtra("total_price", 0.0);
+        // Initialize database helper
+        orderDatabaseHelper = new OrderDatabaseHelper(this);
 
-        // Display the total price
+        // Get total price from intent
+        totalPrice = getIntent().getDoubleExtra("total_price", 0.0);
         totalPriceView.setText("Total Price: $" + String.format("%.2f", totalPrice));
 
-        // Set up the "Confirm Order" button click listener
+        // Confirm order button click
         btnConfirmOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get user input
+                // Get user details
                 String name = edtName.getText().toString().trim();
                 String phoneNumber = edtPhoneNumber.getText().toString().trim();
                 String email = edtEmail.getText().toString().trim();
                 String address = edtAddress.getText().toString().trim();
 
-                // Simple validation to check if fields are empty
+                // Validate fields
                 if (name.isEmpty() || phoneNumber.isEmpty() || email.isEmpty() || address.isEmpty()) {
                     Toast.makeText(Checkout.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    // Show confirmation message
-                    Toast.makeText(Checkout.this, "Order confirmation email sent to you!", Toast.LENGTH_SHORT).show();
+                    // Insert order into database and get order ID
+                    long orderId = orderDatabaseHelper.insertOrder(name, phoneNumber, email, address, totalPrice);
 
-                    // You can also send the order details to a backend or process the order here
-                    // Example: sendOrderToBackend(name, phoneNumber, email, address, cartItems);
+                    // Open order confirmation page
+                    Intent intent = new Intent(Checkout.this, OrderConfirmationActivity.class);
+                    intent.putExtra("order_id", orderId);
+                    startActivity(intent);
+                    finish(); // Close checkout activity
                 }
             }
         });

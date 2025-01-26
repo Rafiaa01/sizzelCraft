@@ -6,25 +6,35 @@
     android:background="@drawable/gradient"
     android:padding="16dp">
 
+    <ImageView
+        android:layout_width="210dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/circle"
+        android:clipToOutline="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/order3" />
+    <TextView
+        android:id="@+id/thanks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thank You "
+        android:layout_gravity="center"
+        android:textColor="@color/yellow"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
     <TextView
         android:id="@+id/confirmation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Order Confirmed"
-        android:textColor="@color/yellow"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"/>
-
-    <TextView
-        android:id="@+id/details"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your order id and details "
+        android:text="Your Order is On the way!"
+        android:layout_gravity="center"
         android:textColor="@color/yellow"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/txtOrderId"
@@ -45,4 +55,13 @@
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/Trackorder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Track Order"
+        android:textColor="@color/black"
+        android:layout_gravity="center"/>
+
 </LinearLayout>

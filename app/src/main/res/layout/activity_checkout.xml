@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/title1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CHECK OUT"
         android:textSize="30dp"
         android:textStyle="bold"
         android:textColor="@color/yellow"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="50dp"/>
+        android:layout_gravity="center"/>
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
@@ -34,13 +34,14 @@
         android:text="Name"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColor="@color/yellow" />
     <EditText
         android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:hint="Enter Name"
+        android:textColor="@color/white"
         android:inputType="textPersonName" />
 
     <TextView
@@ -49,13 +50,14 @@
         android:layout_height="wrap_content"
         android:text="Phone Number"
         android:textStyle="bold"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColor="@color/yellow" />
     <!-- Phone Number Input -->
     <EditText
         android:id="@+id/edtPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textColor="@color/white"
         android:hint="Enter Phone Number"
         android:inputType="phone" />
 
@@ -65,13 +67,14 @@
         android:layout_height="wrap_content"
         android:text="E-mail"
         android:textStyle="bold"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColor="@color/yellow" />
     <!-- Email Input -->
     <EditText
         android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textColor="@color/white"
         android:hint="Enter Email"
         android:inputType="textEmailAddress" />
 
@@ -81,13 +84,14 @@
         android:layout_height="wrap_content"
         android:text="Address"
         android:textStyle="bold"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textColor="@color/yellow" />
     <!-- Address Input -->
     <EditText
         android:id="@+id/edtAddress"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:textColor="@color/white"
         android:hint="Enter Address"
         android:inputType="textPostalAddress" />
 
@@ -95,8 +99,9 @@
         android:id="@+id/total_price1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="15sp"
         android:textStyle="bold"
+        android:textColor="@color/white"
         android:layout_marginTop="140dp"
         android:layout_gravity="right"
         />
