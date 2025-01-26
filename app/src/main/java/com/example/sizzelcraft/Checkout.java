@@ -1,17 +1,19 @@
 package com.example.sizzelcraft;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import java.util.ArrayList;
 
 public class Checkout extends AppCompatActivity {
 
@@ -25,14 +27,13 @@ public class Checkout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-
-
         edtName = findViewById(R.id.edtName);
         edtPhoneNumber = findViewById(R.id.edtPhoneNumber);
         edtEmail = findViewById(R.id.edtEmail);
         edtAddress = findViewById(R.id.edtAddress);
         btnConfirmOrder = findViewById(R.id.btnConfirmOrder);
         totalPriceView = findViewById(R.id.total_price1);
+
         // Get the total price from the Intent
         totalPrice = getIntent().getDoubleExtra("total_price", 0.0);
 
@@ -61,9 +62,5 @@ public class Checkout extends AppCompatActivity {
                 }
             }
         });
-
-
-
     }
-
 }
