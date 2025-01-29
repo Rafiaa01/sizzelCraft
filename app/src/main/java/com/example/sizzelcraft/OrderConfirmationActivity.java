@@ -3,7 +3,9 @@ package com.example.sizzelcraft;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +17,7 @@ public class OrderConfirmationActivity extends AppCompatActivity {
 
     TextView txtOrderId, txtOrderDetails;
     Button btnTrackOrder;
+    ImageView backarrow;
     OrderDatabaseHelper orderDatabaseHelper;
 
     @Override
@@ -26,7 +29,13 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         txtOrderDetails = findViewById(R.id.txtOrderDetails);
         btnTrackOrder = findViewById(R.id.Trackorder);
         orderDatabaseHelper = new OrderDatabaseHelper(this);
-
+        backarrow = findViewById(R.id.backimg2);
+backarrow.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent(OrderConfirmationActivity.this,Checkout.class);
+    }
+});
         // Get order ID from intent
         long orderId = getIntent().getLongExtra("order_id", -1);
 
@@ -68,4 +77,5 @@ public class OrderConfirmationActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
 }

@@ -5,12 +5,20 @@
     android:orientation="vertical"
     android:background="@drawable/gradient"
     android:padding="16dp">
-
+    <ImageView
+        android:id="@+id/backimg2"
+        android:layout_width="36dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="-160dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/food_image_description"
+        android:src="@drawable/arrow" />
     <ImageView
         android:layout_width="210dp"
         android:layout_height="200dp"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="59dp"
         android:background="@drawable/circle"
         android:clipToOutline="true"
         android:scaleType="centerCrop"
